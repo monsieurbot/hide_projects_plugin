@@ -23,7 +23,13 @@ Application.Controllers.controller('MainNavController', ['$scope', '$rootScope',
 $scope.isAuthenticated = function () {
   return AuthService.isAuthenticated();
 };
-
+$scope.isAuthorized = function (authorizedRoles) {
+  if (!Array.isArray(authorizedRoles)) {
+    authorizedRoles = [authorizedRoles];
+  }
+  return AuthService.isAuthorized(authorizedRoles);
+};
+    
 $scope.login = function (event) {
   event.preventDefault();
   $rootScope.login(event);
